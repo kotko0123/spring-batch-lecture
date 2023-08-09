@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  mysql57:
+    image: mysql:5.7
+    container_name: mysql57-container
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysql57:/var/lib/mysql
+  redis:
+    image: redis:4.0
+    ports:
+      - "6378:6379"
+    mem_limit: 256m
+    networks:
+      - esnet
+
+volumes:
+  mysql57:
+    driver: local
+networks:
+  esnet:
