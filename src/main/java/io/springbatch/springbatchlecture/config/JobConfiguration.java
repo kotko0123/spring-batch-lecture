@@ -13,34 +13,34 @@
 //@Slf4j
 //@Configuration
 //@RequiredArgsConstructor
-//public class HelloJobConfiguration {
+//public class JobConfiguration {
 //
 //  private final JobBuilderFactory jobBuilderFactory;
 //  private final StepBuilderFactory stepBuilderFactory;
 //
 //  @Bean
-//  public Job helloJob() {
-//    return jobBuilderFactory.get("helloJob")
-//      .start(helloStep1())
-//      .next(helloStep2())
+//  public Job job() {
+//    return jobBuilderFactory.get("job")
+//      .start(step1())
+//      .next(step2())
 //      .build();
 //  }
 //
 //  @Bean
-//  public Step helloStep2() {
-//    return stepBuilderFactory.get("helloStep2")
+//  public Step step1() {
+//    return stepBuilderFactory.get("step1")
 //      .tasklet((contribution, chunkContext) -> {
-//        log.info("### Hello Spring Batch 222");
+//        log.info("### step1");
 //        return RepeatStatus.FINISHED;
 //      })
 //      .build();
 //  }
 //
 //  @Bean
-//  public Step helloStep1() {
-//    return stepBuilderFactory.get("helloStep")
+//  public Step step2() {
+//    return stepBuilderFactory.get("step2")
 //      .tasklet((contribution, chunkContext) -> {
-//        log.info("### Hello Spring Batch 111");
+//        log.info("### step2");
 //        return RepeatStatus.FINISHED;
 //      })
 //      .build();
