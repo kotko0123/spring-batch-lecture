@@ -31,5 +31,7 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+#      table-prefix: SYSTEM_
     job:
-      enabled: false
+      enabled: true
+#      names: ${job.name:NONE} # 실행시점에 program arguments 로 넣을 수 있다. (ex: --job.name=batchJob1)
