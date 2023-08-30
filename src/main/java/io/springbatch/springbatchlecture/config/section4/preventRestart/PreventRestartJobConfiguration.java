@@ -1,4 +1,4 @@
-//package io.springbatch.springbatchlecture.config.section4.simpleJob;
+//package io.springbatch.springbatchlecture.config.section4.preventRestart;
 //
 //import lombok.RequiredArgsConstructor;
 //import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@
 //@Slf4j
 //@Configuration
 //@RequiredArgsConstructor
-//public class SimpleJobConfiguration {
+//public class PreventRestartJobConfiguration {
 //
 //  private final JobBuilderFactory jobBuilderFactory;
 //  private final StepBuilderFactory stepBuilderFactory;
@@ -23,26 +23,7 @@
 //    return jobBuilderFactory.get("job")
 //      .start(step1())
 //      .next(step2())
-//      .next(step3())
-//      .incrementer(new RunIdIncrementer())
-//      .validator(new JobParametersValidator() {
-//        @Override
-//        public void validate(JobParameters parameters) throws JobParametersInvalidException {
-//          System.out.println("validate params: " + parameters.getParameters());
-//        }
-//      })
 //      .preventRestart() // 실패한 경우에도 이 작업 실행을 다시 시작하지 못하도록 플래그를 설정합니다.
-//      .listener(new JobExecutionListener() {
-//        @Override
-//        public void beforeJob(JobExecution jobExecution) {
-//          System.out.println("beforeJob!!!");
-//        }
-//
-//        @Override
-//        public void afterJob(JobExecution jobExecution) {
-//          System.out.println("afterJob!!!");
-//        }
-//      })
 //      .build();
 //  }
 //
@@ -60,22 +41,8 @@
 //  public Step step2() {
 //    return stepBuilderFactory.get("step2")
 //      .tasklet((contribution, chunkContext) -> {
+////        throw new RuntimeException("step2 was failed");
 //        log.info("### step2");
-//        return RepeatStatus.FINISHED;
-//      })
-//      .build();
-//  }
-//
-//  @Bean
-//  public Step step3() {
-//    return stepBuilderFactory.get("step3")
-//      .tasklet((contribution, chunkContext) -> {
-//        /**
-//         * Job 상태값의 최종 Step의 상태값을 받는다.
-//         */
-////        chunkContext.getStepContext().getStepExecution().setStatus(BatchStatus.FAILED);
-////        contribution.setExitStatus(ExitStatus.STOPPED);
-//        log.info("### step3");
 //        return RepeatStatus.FINISHED;
 //      })
 //      .build();
